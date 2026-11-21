@@ -194,5 +194,165 @@ const lessonDemos = {
       { line: 1, action: "none", text: { en: "Picking random number 1..6...", el: "Τυχαίος αριθμός 1..6...", ro: "Alegem număr aleatoriu 1..6..." } },
       { line: 2, action: "put", text: { en: "Rolled a 6! You win!", el: "Έφερε 6! Κέρδισες!", ro: "A ieșit 6! Ai câștigat!" } }
     ]
+  },
+     // --- MODULUL 3: BBC MICRO:BIT SENZORI & RADIO (17 - 22) ---
+  17: {
+    start: { x: 2, y: 2, dir: 3 }, walls: [], beepers: [], goal: null,
+    code: ["if (input.lightLevel() < 50) {", "  basic.showIcon(IconNames.SmallSquare)", "} else {", "  basic.clearScreen()", "}"],
+    steps: [
+      { line: 0, action: "none", text: { en: "Room is bright (lightLevel = 180)", el: "Το δωμάτιο έχει φως (180)", ro: "Camera e luminată (lightLevel = 180)" } },
+      { line: 0, action: "none", text: { en: "Covering sensor with hands -> Dark!", el: "Καλύπτουμε τον αισθητήρα -> Σκοτάδι!", ro: "Acoperim senzorul cu palmele -> Întuneric!" } },
+      { line: 1, action: "put", text: { en: "Night Light ON automatically!", el: "Το φως νυκτός άναψε αυτόματα!", ro: "Lampa de noapte s-a aprins automat!" } }
+    ]
+  },
+  18: {
+    start: { x: 2, y: 2, dir: 0 }, walls: [], beepers: [], goal: { x: 2, y: 0 },
+    code: ["let deg = input.compassHeading()", "if (deg < 45 || deg > 315) {", "  basic.showString(\"N\")", "}"],
+    steps: [
+      { line: 0, action: "turnRight", text: { en: "Rotating South (180°)...", el: "Περιστροφή Νότια (180°)...", ro: "Rotire spre Sud (180°)..." } },
+      { line: 0, action: "turnRight", text: { en: "Rotating West (270°)...", el: "Περιστροφή Δυτικά (270°)...", ro: "Rotire spre Vest (270°)..." } },
+      { line: 1, action: "face", dir: 3, text: { en: "Heading 0° -> North found!", el: "0° -> Βρέθηκε ο Βορράς!", ro: "0° -> Am găsit Nordul!" } },
+      { line: 2, action: "move", text: { en: "Displaying 'N' & walking North!", el: "Εμφάνιση 'N' και πορεία Βόρεια!", ro: "Afișăm 'N' și mergem spre Nord!" } }
+    ]
+  },
+  19: {
+    start: { x: 0, y: 2, dir: 0 }, walls: [], beepers: [], goal: { x: 4, y: 2 },
+    code: ["let steps = 0", "input.onGesture(Gesture.Shake, () => {", "  steps += 1", "  basic.showNumber(steps)", "})"],
+    steps: [
+      { line: 2, action: "move", text: { en: "Step 1 counted! (steps = 1)", el: "Βήμα 1! (steps = 1)", ro: "Pasul 1 numărat! (steps = 1)" } },
+      { line: 2, action: "move", text: { en: "Step 2 counted! (steps = 2)", el: "Βήμα 2! (steps = 2)", ro: "Pasul 2 numărat! (steps = 2)" } },
+      { line: 2, action: "move", text: { en: "Step 3 counted! (steps = 3)", el: "Βήμα 3! (steps = 3)", ro: "Pasul 3 numărat! (steps = 3)" } },
+      { line: 3, action: "move", text: { en: "Step 4! Goal reached!", el: "Βήμα 4! Φτάσαμε στον στόχο!", ro: "Pasul 4! Obiectiv atins!" } }
+    ]
+  },
+  20: {
+    start: { x: 0, y: 2, dir: 0 }, walls: [{ x: 2, y: 1 }, { x: 2, y: 3 }], beepers: [], goal: { x: 4, y: 2 },
+    code: ["radio.setGroup(7)", "input.onButtonPressed(Button.A, () => {", "  radio.sendString(\"HELLO\")", "})"],
+    steps: [
+      { line: 0, action: "none", text: { en: "Both micro:bits tuned to Radio Group 7", el: "Συντονισμός στην ομάδα Radio 7", ro: "Ambele plăci setate pe Radio Group 7" } },
+      { line: 2, action: "put", text: { en: "Sending wireless signal...", el: "Αποστολή ασύρματου σήματος...", ro: "Trimitem semnalul wireless..." } },
+      { line: 2, action: "move", text: { en: "Signal traveling across room...", el: "Το σήμα ταξιδεύει...", ro: "Semnalul traversează sala..." } },
+      { line: 2, action: "move", text: { en: "Signal traveling across room...", el: "Το σήμα ταξιδεύει...", ro: "Semnalul traversează sala..." } },
+      { line: 2, action: "move", text: { en: "Signal traveling across room...", el: "Το σήμα ταξιδεύει...", ro: "Semnalul traversează sala..." } },
+      { line: 2, action: "move", text: { en: "Friend received 'HELLO'!", el: "Ο φίλος έλαβε 'HELLO'!", ro: "Colegul a primit mesajul 'HELLO'!" } }
+    ]
+  },
+  21: {
+    start: { x: 2, y: 2, dir: 3 }, walls: [], beepers: [{ x: 2, y: 2 }], goal: null,
+    code: ["if (input.isGesture(Gesture.TiltUp)) {", "  radio.sendNumber(911) // INTRUDER!", "  music.playTone(988, 500)", "}"],
+    steps: [
+      { line: 0, action: "none", text: { en: "Treasure box closed & armed...", el: "Το κουτί είναι κλειστό...", ro: "Cutia cu comori este închisă și armată..." } },
+      { line: 0, action: "turnLeft", text: { en: "Someone lifted the lid!", el: "Κάποιος άνοιξε το καπάκι!", ro: "Cineva a ridicat capacul!" } },
+      { line: 1, action: "pick", text: { en: "ALARM! Sending Radio Alert 911!", el: "ΣΥΝΑΓΕΡΜΟΣ! Σήμα 911!", ro: "ALARMĂ! Trimitem alerta radio 911!" } },
+      { line: 2, action: "put", text: { en: "Siren active!", el: "Η σειρήνα χτυπά!", ro: "Sirena a pornit!" } }
+    ]
+  },
+  22: {
+    start: { x: 1, y: 2, dir: 0 }, walls: [], beepers: [], goal: { x: 3, y: 2 },
+    code: ["// Smart Reaction Gadget", "basic.pause(randint(1000, 3000))", "basic.showIcon(IconNames.Target)", "if (input.buttonIsPressed(Button.A)) { win() }"],
+    steps: [
+      { line: 1, action: "none", text: { en: "Get ready... Wait for signal...", el: "Ετοιμαστείτε... Περιμένετε...", ro: "Pregătiți-vă... Așteptați semnalul..." } },
+      { line: 2, action: "put", text: { en: "GO! Target appeared!", el: "ΠΑΜΕ! Εμφανίστηκε ο στόχος!", ro: "START! A apărut ținta!" } },
+      { line: 3, action: "move", text: { en: "Fast reaction! Player 1 scores!", el: "Γρήγορη αντίδραση! Πόντος!", ro: "Reacție fulger! Punct câștigat!" } },
+      { line: 3, action: "move", text: { en: "Gadget test passed!", el: "Επιτυχής δοκιμή!", ro: "Testul gadgetului a reușit!" } }
+    ]
+  },
+
+  // --- MODULUL 4: PHYSICAL ROBOTS (23 - 30) ---
+  23: {
+    start: { x: 0, y: 2, dir: 0 }, walls: [], beepers: [], goal: { x: 4, y: 2 },
+    code: ["robot.motorLeft(80)", "robot.motorRight(80)", "basic.pause(2000)", "robot.stop()"],
+    steps: [
+      { line: 0, action: "move", text: { en: "Left & Right motors at 80% power", el: "Μοτέρ στο 80% ισχύ", ro: "Motoarele stânga/dreapta la 80%" } },
+      { line: 1, action: "move", text: { en: "Driving straight...", el: "Κίνηση ευθεία...", ro: "Mers în linie dreaptă..." } },
+      { line: 2, action: "move", text: { en: "Driving straight...", el: "Κίνηση ευθεία...", ro: "Mers în linie dreaptă..." } },
+      { line: 3, action: "move", text: { en: "1 meter reached -> robot.stop()", el: "1 μέτρο -> robot.stop()", ro: "1 metru parcurs -> robot.stop()" } }
+    ]
+  },
+  24: {
+    start: { x: 1, y: 3, dir: 3 }, walls: [{ x: 2, y: 2 }], beepers: [], goal: { x: 3, y: 1 },
+    code: ["driveForward(1000)", "turnRight90()", "driveForward(1000)", "parkInGarage()"],
+    steps: [
+      { line: 0, action: "move", text: { en: "Driving to corner...", el: "Οδήγηση στη γωνία...", ro: "Conducem până la colț..." } },
+      { line: 0, action: "move", text: { en: "At corner...", el: "Στη γωνία...", ro: "Am ajuns la colț..." } },
+      { line: 1, action: "turnRight", text: { en: "Executing 90-degree turn", el: "Στροφή 90 μοιρών", ro: "Viraj precis la 90°" } },
+      { line: 2, action: "move", text: { en: "Approaching garage...", el: "Πλησιάζουμε το γκαράζ...", ro: "Ne apropiem de garaj..." } },
+      { line: 3, action: "move", text: { en: "Parked perfectly!", el: "Παρκάραμε τέλεια!", ro: "Parcare perfectă în garaj!" } }
+    ]
+  },
+  25: {
+    start: { x: 0, y: 3, dir: 0 }, walls: [{ x: 2, y: 3 }, { x: 2, y: 1 }], beepers: [], goal: { x: 4, y: 2 },
+    code: ["// Radio Tilt Controller", "if (tiltForward) { drive() }", "if (tiltLeft) { steerLeft() }", "if (tiltRight) { steerRight() }"],
+    steps: [
+      { line: 1, action: "move", text: { en: "Tilted forward -> Driving!", el: "Κλίση μπροστά -> Κίνηση!", ro: "Înclinat înainte -> Pornire!" } },
+      { line: 2, action: "turnLeft", text: { en: "Tilted left -> Steering around cone", el: "Κλίση αριστερά -> Στροφή", ro: "Înclinat stânga -> Ocolim conul" } },
+      { line: 1, action: "move", text: { en: "Passing slalom cone...", el: "Περνάμε τον κώνο...", ro: "Trecem de primul con..." } },
+      { line: 3, action: "turnRight", text: { en: "Tilted right -> Steering East", el: "Κλίση δεξιά -> Στροφή", ro: "Înclinat dreapta -> Redresare" } },
+      { line: 1, action: "move", text: { en: "Slalom driving...", el: "Οδήγηση σλάλομ...", ro: "Conducere în slalom..." } },
+      { line: 1, action: "move", text: { en: "Slalom driving...", el: "Οδήγηση σλάλομ...", ro: "Conducere în slalom..." } },
+      { line: 1, action: "move", text: { en: "Slalom course cleared!", el: "Ολοκληρώθηκε το σλάλομ!", ro: "Traseu slalom finalizat!" } }
+    ]
+  },
+  26: {
+    start: { x: 0, y: 2, dir: 0 }, walls: [{ x: 3, y: 2 }], beepers: [], goal: { x: 3, y: 0 },
+    code: ["let dist = robot.ultrasonicCm()", "if (dist < 15) {", "  robot.turnLeft()", "} else { robot.forward() }"],
+    steps: [
+      { line: 3, action: "move", text: { en: "dist = 45 cm -> Path clear", el: "απόσταση = 45 εκ. -> Ελεύθερο", ro: "dist = 45 cm -> Drum liber" } },
+      { line: 0, action: "move", text: { en: "dist = 12 cm -> WALL DETECTED!", el: "απόσταση = 12 εκ. -> ΤΟΙΧΟΣ!", ro: "dist = 12 cm -> ZID DETECTAT!" } },
+      { line: 2, action: "turnLeft", text: { en: "Auto-turning away from wall!", el: "Αυτόματη στροφή!", ro: "Viraj automat pentru evitare!" } },
+      { line: 3, action: "move", text: { en: "dist = 60 cm -> Safe to drive!", el: "απόσταση = 60 εκ. -> Ασφαλές!", ro: "dist = 60 cm -> Drum sigur!" } },
+      { line: 3, action: "move", text: { en: "Obstacle avoided autonomously!", el: "Αποφυγή εμποδίου επιτυχής!", ro: "Obstacol evitat autonom!" } }
+    ]
+  },
+  27: {
+    start: { x: 0, y: 4, dir: 0 }, walls: [], beepers: [], goal: { x: 4, y: 1 },
+    code: ["if (leftIR == BLACK && rightIR == WHITE) {", "  steerLeft()", "} else { followLine() }"],
+    steps: [
+      { line: 2, action: "move", text: { en: "Following black track...", el: "Ακολουθούμε τη μαύρη γραμμή...", ro: "Urmărim linia neagră..." } },
+      { line: 2, action: "move", text: { en: "Following black track...", el: "Ακολουθούμε τη μαύρη γραμμή...", ro: "Urmărim linia neagră..." } },
+      { line: 1, action: "turnLeft", text: { en: "Curve detected -> Adjusting motors", el: "Στροφή -> Διόρθωση μοτέρ", ro: "Curbă detectată -> Ajustăm motoarele" } },
+      { line: 2, action: "move", text: { en: "Climbing curve...", el: "Ανεβαίνουμε τη στροφή...", ro: "Urcăm pe curbă..." } },
+      { line: 2, action: "move", text: { en: "Climbing curve...", el: "Ανεβαίνουμε τη στροφή...", ro: "Urcăm pe curbă..." } },
+      { line: 2, action: "move", text: { en: "Track completed!", el: "Η διαδρομή ολοκληρώθηκε!", ro: "Traseu parcurs cu succes!" } }
+    ]
+  },
+  28: {
+    start: { x: 0, y: 3, dir: 0 }, walls: [{ x: 2, y: 3 }], beepers: [{ x: 4, y: 2 }], goal: { x: 4, y: 2 },
+    code: ["avoidObstacle()", "if (targetFound()) {", "  sirenOn()", "  radio.sendString(\"RESCUED\")", "}"],
+    steps: [
+      { line: 0, action: "move", text: { en: "Scanning rescue zone...", el: "Σάρωση ζώνης διάσωσης...", ro: "Scanăm zona de salvare..." } },
+      { line: 0, action: "turnLeft", text: { en: "Debris ahead -> Going around", el: "Εμπόδιο -> Παράκαμψη", ro: "Obstacol în față -> Ocolim" } },
+      { line: 0, action: "move", text: { en: "Moving around debris...", el: "Παράκαμψη...", ro: "Ocolim obstacolul..." } },
+      { line: 0, action: "turnRight", text: { en: "Back on rescue heading", el: "Επιστροφή στην πορεία", ro: "Revenim pe direcția de salvare" } },
+      { line: 0, action: "move", text: { en: "Approaching target...", el: "Πλησιάζουμε τον στόχο...", ro: "Ne apropiem de țintă..." } },
+      { line: 0, action: "move", text: { en: "Approaching target...", el: "Πλησιάζουμε τον στόχο...", ro: "Ne apropiem de țintă..." } },
+      { line: 2, action: "move", text: { en: "Target reached! Siren ON!", el: "Φτάσαμε! Σειρήνα ON!", ro: "Țintă atinsă! Sirenă pornită!" } },
+      { line: 3, action: "pick", text: { en: "Radio sent: 'RESCUED'!", el: "Μήνυμα: 'RESCUED'!", ro: "Mesaj radio trimis: 'RESCUED'!" } }
+    ]
+  },
+  29: {
+    start: { x: 0, y: 0, dir: 0 }, walls: [{ x: 1, y: 1 }, { x: 3, y: 3 }], beepers: [{ x: 2, y: 2 }], goal: { x: 4, y: 4 },
+    code: ["// Final Project Test Run", "calibrateSensors()", "runFullMission()", "verifyZeroCrashes()"],
+    steps: [
+      { line: 1, action: "move", text: { en: "Test Run 1/3: Sensors calibrated", el: "Δοκιμή 1/3: Αισθητήρες OK", ro: "Test 1/3: Senzori calibrați" } },
+      { line: 2, action: "move", text: { en: "Navigating test course...", el: "Πλοήγηση στην πίστα...", ro: "Navigăm pe traseul de test..." } },
+      { line: 2, action: "turnRight", text: { en: "Smooth cornering...", el: "Ομαλή στροφή...", ro: "Viraj lin..." } },
+      { line: 2, action: "move", text: { en: "Checking checkpoint...", el: "Έλεγχος σημείου...", ro: "Verificăm punctul de control..." } },
+      { line: 2, action: "move", text: { en: "Checkpoint passed!", el: "Πέρασε το σημείο!", ro: "Punct de control trecut!" } },
+      { line: 2, action: "turnLeft", text: { en: "Final straight...", el: "Τελική ευθεία...", ro: "Linia dreaptă finală..." } },
+      { line: 2, action: "move", text: { en: "Almost at finish...", el: "Σχεδόν στον τερματισμό...", ro: "Aproape de final..." } },
+      { line: 3, action: "move", text: { en: "Zero crashes! Ready for Demo Day!", el: "Καμία σύγκρουση! Έτοιμοι!", ro: "Zero erori! Gata pentru Demo Day!" } }
+    ]
+  },
+  30: {
+    start: { x: 0, y: 2, dir: 0 }, walls: [], beepers: [{ x: 2, y: 2 }], goal: { x: 4, y: 2 },
+    code: ["// DEMO DAY & GRADUATION!", "presentToParents()", "celebrate30Hours()", "awardDiploma(\"LAB-K30\")"],
+    steps: [
+      { line: 1, action: "move", text: { en: "Presenting robot to parents!", el: "Παρουσίαση στους γονείς!", ro: "Prezentăm robotul părinților!" } },
+      { line: 2, action: "move", text: { en: "Collecting graduation trophy!", el: "Παραλαβή τροπαίου!", ro: "Ridicăm trofeul de absolvire!" } },
+      { line: 2, action: "pick", text: { en: "30 Hours Completed!", el: "30 Ώρες Ολοκληρώθηκαν!", ro: "30 de Ore Finalizate!" } },
+      { line: 3, action: "move", text: { en: "Moving to podium...", el: "Προς το βάθρο...", ro: "Mergem spre podium..." } },
+      { line: 3, action: "move", text: { en: "CONGRATULATIONS GRADUATES!", el: "ΣΥΓΧΑΡΗΤΗΡΙΑ ΑΠΟΦΟΙΤΟΙ!", ro: "FELICITĂRI ABSOLVENȚILOR!" } }
+    ]
   }
 };
