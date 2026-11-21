@@ -37,65 +37,6 @@ const uiTranslations = {
 };
 
 // Scenarii animate pentru fiecare lecție (hartă 5x5 + pași sincronizați cu liniile de cod)
-const lessonDemos = {
-  1: {
-    start: { x: 0, y: 2, dir: 0 }, // dir: 0=Dreapta, 1=Jos, 2=Stânga, 3=Sus
-    walls: [],
-    beepers: [],
-    goal: { x: 3, y: 2 },
-    code: ["move();", "move();", "move();"],
-    steps: [
-      { line: 0, action: "move", text: { en: "Step 1: Karel moves forward!", el: "Βήμα 1: Ο Karel προχωρά!", ro: "Pasul 1: Karel merge înainte!" } },
-      { line: 1, action: "move", text: { en: "Step 2: Moving again!", el: "Βήμα 2: Προχωρά ξανά!", ro: "Pasul 2: Încă un pas înainte!" } },
-      { line: 2, action: "move", text: { en: "Goal reached! Great job!", el: "Φτάσαμε στον στόχο!", ro: "Am ajuns la destinație!" } }
-    ]
-  },
-  2: {
-    start: { x: 1, y: 3, dir: 0 },
-    walls: [{ x: 3, y: 2 }],
-    beepers: [],
-    goal: { x: 3, y: 1 },
-    code: ["move();", "move();", "turnLeft();", "move();", "move();"],
-    steps: [
-      { line: 0, action: "move", text: { en: "Walk along the street...", el: "Περπατάμε στον δρόμο...", ro: "Mergem pe stradă..." } },
-      { line: 1, action: "move", text: { en: "Reach the corner...", el: "Φτάνουμε στη γωνία...", ro: "Ajungem la colț..." } },
-      { line: 2, action: "turnLeft", text: { en: "Turn Left to face North!", el: "Στρίβουμε αριστερά!", ro: "Virăm la stânga!" } },
-      { line: 3, action: "move", text: { en: "Going up past the wall...", el: "Ανεβαίνουμε δίπλα στον τοίχο...", ro: "Urcăm pe lângă zid..." } },
-      { line: 4, action: "move", text: { en: "Arrived safely!", el: "Φτάσαμε με ασφάλεια!", ro: "Am ajuns cu bine!" } }
-    ]
-  },
-  3: {
-    start: { x: 0, y: 2, dir: 0 },
-    walls: [],
-    beepers: [{ x: 1, y: 2 }, { x: 2, y: 2 }],
-    goal: { x: 4, y: 2 },
-    code: ["move();", "pickBeeper();", "move();", "pickBeeper();", "move();", "move();", "putBeeper();"],
-    steps: [
-      { line: 0, action: "move", text: { en: "Move to first diamond...", el: "Πάμε στο πρώτο διαμάντι...", ro: "Mergem la primul diamant..." } },
-      { line: 1, action: "pick", text: { en: "pickBeeper() -> Diamond collected!", el: "pickBeeper() -> Μαζέψαμε διαμάντι!", ro: "pickBeeper() -> Am ridicat diamantul!" } },
-      { line: 2, action: "move", text: { en: "Move to second diamond...", el: "Πάμε στο δεύτερο διαμάντι...", ro: "Mergem la al doilea diamant..." } },
-      { line: 3, action: "pick", text: { en: "pickBeeper() -> Got the second one!", el: "pickBeeper() -> Πήραμε και το δεύτερο!", ro: "pickBeeper() -> L-am luat și pe al doilea!" } },
-      { line: 4, action: "move", text: { en: "Heading to base...", el: "Πάμε στη βάση...", ro: "Mergem spre bază..." } },
-      { line: 5, action: "move", text: { en: "Almost there...", el: "Σχεδόν φτάσαμε...", ro: "Aproape am ajuns..." } },
-      { line: 6, action: "put", text: { en: "putBeeper() -> Treasure delivered!", el: "putBeeper() -> Παραδώσαμε τον θησαυρό!", ro: "putBeeper() -> Comoara a fost livrată!" } }
-    ]
-  },
-  4: {
-    start: { x: 1, y: 1, dir: 0 },
-    walls: [{ x: 2, y: 2 }],
-    beepers: [],
-    goal: { x: 3, y: 3 },
-    code: ["move();", "turnRight(); // 3x turnLeft()", "move();", "move();", "turnLeft();", "move();"],
-    steps: [
-      { line: 0, action: "move", text: { en: "Move before turning right...", el: "Προχωράμε πριν στρίψουμε δεξιά...", ro: "Înaintăm înainte de viraj..." } },
-      { line: 1, action: "turnRight", text: { en: "turnRight() = 3 left turns!", el: "turnRight() = 3 αριστερές στροφές!", ro: "turnRight() = 3 întoarceri la stânga!" } },
-      { line: 2, action: "move", text: { en: "Going around the obstacle...", el: "Παρακάμπτουμε το εμπόδιο...", ro: "Ocolim obstacolul..." } },
-      { line: 3, action: "move", text: { en: "One more step down...", el: "Ένα βήμα ακόμα κάτω...", ro: "Încă un pas în jos..." } },
-      { line: 4, action: "turnLeft", text: { en: "Turn Left toward the goal...", el: "Στρίβουμε αριστερά στον στόχο...", ro: "Virăm la stânga spre țintă..." } },
-      { line: 5, action: "move", text: { en: "Obstacle avoided! Mission complete!", el: "Αποφύγαμε το εμπόδιο!", ro: "Obstacol ocolit! Misiune îndeplinită!" } }
-    ]
-  }
-};
 
 function setLanguage(lang) {
   currentLang = lang;
