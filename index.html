@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LAB-K30 | Logic & Robotics Modules</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-badge">K30</span>
+      <div>
+        <h1 id="site-title">Logic & Robotics Lab</h1>
+        <p id="site-subtitle">30-Hour Interactive Curriculum (Ages 5+)</p>
+      </div>
+    </div>
+    <div class="lang-switcher" role="group" aria-label="Language Switcher">
+      <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">🇬🇧 EN</button>
+      <button class="lang-btn" data-lang="el" onclick="setLanguage('el')">🇬🇷 ΕΛ</button>
+      <button class="lang-btn" data-lang="ro" onclick="setLanguage('ro')">🇷🇴 RO</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro-banner">
+      <p id="intro-text">
+        Welcome to our hands-on coding & robotics lab! Core technical terms stay in English so young learners build real IT fluency from day one.
+      </p>
+      <div class="module-filters">
+        <button class="filter-btn active" onclick="filterModule('all', this)" id="btn-all">All (30)</button>
+        <button class="filter-btn" onclick="filterModule(1, this)">1. Karel (1–8)</button>
+        <button class="filter-btn" onclick="filterModule(2, this)">2. Scratch (9–14)</button>
+        <button class="filter-btn" onclick="filterModule(3, this)">3. micro:bit (15–22)</button>
+        <button class="filter-btn" onclick="filterModule(4, this)">4. Robots (23–30)</button>
+      </div>
+    </section>
+
+    <section id="lessons-grid" class="lessons-grid"></section>
+  </main>
+
+  <!-- Modal pentru detalii lecție & script video -->
+  <div id="lesson-modal" class="modal hidden" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <span id="modal-badge" class="badge">Module 1</span>
+      <h2 id="modal-title">Lesson Title</h2>
+      <p id="modal-desc" class="modal-desc"></p>
+      
+      <div class="levels-box">
+        <div class="level-card explorer">
+          <h4 id="lbl-explorer">Explorer (Ages 5–7)</h4>
+          <p id="modal-explorer"></p>
+        </div>
+        <div class="level-card builder">
+          <h4 id="lbl-builder">Builder (Ages 8+)</h4>
+          <p id="modal-builder"></p>
+        </div>
+      </div>
+
+      <div class="video-box">
+        <h4 id="lbl-video">60-Sec Video Preview</h4>
+        <div id="modal-video-placeholder" class="video-placeholder">
+          Video preview will appear here once uploaded.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
