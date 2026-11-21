@@ -115,7 +115,8 @@ function replayLessonDemo() {
 function startLessonDemo(lessonId) {
   if (demoTimer) clearInterval(demoTimer);
 
-  const demo = lessonDemos[lessonId] || lessonDemos[1];
+  const allDemos = (typeof lessonDemos !== "undefined") ? lessonDemos : {};
+  const demo = allDemos[lessonId] || allDemos[1];
   const codeBox = document.getElementById("karel-code-box");
   const caption = document.getElementById("karel-caption");
 
@@ -164,8 +165,9 @@ function startLessonDemo(lessonId) {
       state.beepers = state.beepers.filter(b => !(b.x === state.x && b.y === state.y));
     } else if (step.action === "put") {
       state.dropped.push({ x: state.x, y: state.y });
+    } else if (step.action === "face") {
+      state.dir = step.dir;
     }
-
     caption.textContent = step.text[currentLang] || step.text.en;
     drawGrid(demo, state);
     stepIndex++;
