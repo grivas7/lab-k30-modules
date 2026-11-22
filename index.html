@@ -76,5 +76,51 @@
 <script src="lessons-data.js"></script>
 <script src="demos-data.js"></script>
 <script src="app.js"></script>
+ <script>
+  // Adaugă automat butonul către simulatorul Karel (6 exerciții) pentru Lecțiile 1–8
+  (function () {
+    const observer = new MutationObserver(() => {
+      const replayBtn = Array.from(document.querySelectorAll('button')).find(
+        btn => btn.textContent && btn.textContent.includes('Replay')
+      );
+      if (!replayBtn) return;
+
+      const modalContainer = replayBtn.closest('div')?.parentElement || document.body;
+      // Detectează numărul lecției din titlul afișat în fereastră (ex. "Lesson 01" sau "1.")
+      const headerText = modalContainer.innerText || '';
+      const match = headerText.match(/(?:Lesson|Lecția|Μάθημα)\s*0?([1-8])\b/i) || headerText.match(/\b0?([1-8])\s*[\.\-:]/);
+      const lessonNum = match ? parseInt(match[1], 10) : null;
+
+      let existingLink = document.getElementById('karel-lab-launch-btn');
+      if (lessonNum && lessonNum >= 1 && lessonNum <= 8) {
+        if (!existingLink) {
+          existingLink = document.createElement('a');
+          existingLink.id = 'karel-lab-launch-btn';
+          existingLink.target = '_blank';
+          existingLink.style.cssText = [
+            'display: block',
+            'margin: 14px auto 4px auto',
+            'padding: 12px 18px',
+            'background: linear-gradient(135deg, #10b981, #059669)',
+            'color: #ffffff',
+            'font-weight: 700',
+            'font-size: 0.98rem',
+            'text-align: center',
+            'border-radius: 10px',
+            'text-decoration: none',
+            'box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35)'
+          ].join(';');
+          replayBtn.parentElement.parentElement.appendChild(existingLink);
+        }
+        existingLink.href = `karel-lab.html?lesson=${lessonNum}`;
+        existingLink.textContent = `🤖 Open Interactive Karel Lab • Lesson ${lessonNum} (6 Exercises)`;
+      } else if (existingLink) {
+        existingLink.remove();
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  })();
+</script> 
 </body>
 </html>
